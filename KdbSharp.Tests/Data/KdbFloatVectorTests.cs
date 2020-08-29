@@ -1,0 +1,17 @@
+﻿using KdbSharp.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace KdbSharp.Tests.Data
+{
+    [TestClass]
+    public class KdbFloatVectorTests
+    {
+        private readonly KdbFloatVector _instance = new KdbFloatVector(new double[] { });
+
+        [TestMethod]
+        public void KdbTypeIsFloatVector() => Assert.AreEqual(KdbType.FloatVector, _instance.Type);
+
+        [TestMethod]
+        public void ValueTypeIsFloatArray() => Assert.AreEqual(typeof(double[]), _instance.Value.GetType());
+    }
+}
