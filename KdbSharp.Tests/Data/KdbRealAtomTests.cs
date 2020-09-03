@@ -12,6 +12,6 @@ namespace KdbSharp.Tests.Data
         public void KdbTypeIsRealAtom() => Assert.AreEqual(KdbType.RealAtom, _instance.Type);
 
         [TestMethod]
-        public void ValueTypeIsReal() => Assert.AreEqual(typeof(float), _instance.Value.GetType());
+        public void ValueTypeIsFloat() => Assert.AreEqual(typeof(float), _instance.Value.GetType());
     }
 }

@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
-    public class KdbFloatAtomTests
+    public class KdbDatetimeAtomTests
     {
-        private readonly KdbFloatAtom _instance = new KdbFloatAtom(0);
+        private readonly KdbDatetimeAtom _instance = new KdbDatetimeAtom(0);
 
         [TestMethod]
-        public void KdbTypeIsFloatAtom() => Assert.AreEqual(KdbType.FloatAtom, _instance.Type);
+        public void KdbTypeIsDatetimeAtom() => Assert.AreEqual(KdbType.DatetimeAtom, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsDouble() => Assert.AreEqual(typeof(double), _instance.Value.GetType());

@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
-    public class KdbFloatVectorTests
+    public class KdbDatetimeVectorTests
     {
-        private readonly KdbFloatVector _instance = new KdbFloatVector(new double[] { });
+        private readonly KdbDatetimeVector _instance = new KdbDatetimeVector(new double[] { });
 
         [TestMethod]
-        public void KdbTypeIsFloatVector() => Assert.AreEqual(KdbType.FloatVector, _instance.Type);
+        public void KdbTypeIsDatetimeVector() => Assert.AreEqual(KdbType.DatetimeVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsDoubleArray() => Assert.AreEqual(typeof(double[]), _instance.Value.GetType());

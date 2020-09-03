@@ -12,6 +12,6 @@ namespace KdbSharp.Tests.Data
         public void KdbTypeIsRealVector() => Assert.AreEqual(KdbType.RealVector, _instance.Type);
 
         [TestMethod]
-        public void ValueTypeIsRealArray() => Assert.AreEqual(typeof(float[]), _instance.Value.GetType());
+        public void ValueTypeIsFloatArray() => Assert.AreEqual(typeof(float[]), _instance.Value.GetType());
     }
 }
