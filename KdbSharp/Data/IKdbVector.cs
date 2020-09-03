@@ -1,6 +1,6 @@
 ﻿namespace KdbSharp.Data
 {
-    public interface IKdbVector<T> : IKdbType where T : struct
+    public interface IKdbVector<T> : IKdbType where T : notnull
     {
         public T[] Value { get; }
     }
