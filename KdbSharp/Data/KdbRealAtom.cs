@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbRealAtom : IKdbAtom<float>
+    public class KdbRealAtom : BaseFloatAtom
     {
-        public KdbType Type => KdbType.RealAtom;
+        public override KdbType Type => KdbType.RealAtom;
 
-        public float Value { get; }
-
-        public KdbRealAtom(float value)
+        public KdbRealAtom(float value) : base(value)
         {
-            Value = value;
         }
     }
 }

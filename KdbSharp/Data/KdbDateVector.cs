@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbDateVector : IKdbVector<int>
+    public class KdbDateVector : BaseIntVector
     {
-        public KdbType Type => KdbType.DateVector;
+        public override KdbType Type => KdbType.DateVector;
 
-        public int[] Value { get; }
-
-        public KdbDateVector(int[] value)
+        public KdbDateVector(int[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

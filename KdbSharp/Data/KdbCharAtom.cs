@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbCharAtom : IKdbAtom<char>
+    public class KdbCharAtom : BaseCharAtom
     {
-        public KdbType Type => KdbType.CharAtom;
+        public override KdbType Type => KdbType.CharAtom;
 
-        public char Value { get; }
-
-        public KdbCharAtom(char value)
+        public KdbCharAtom(char value) : base(value)
         {
-            Value = value;
         }
     }
 }

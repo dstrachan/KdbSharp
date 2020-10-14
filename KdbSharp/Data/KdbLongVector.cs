@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbLongVector : IKdbVector<long>
+    public class KdbLongVector : BaseLongVector
     {
-        public KdbType Type => KdbType.LongVector;
+        public override KdbType Type => KdbType.LongVector;
 
-        public long[] Value { get; }
-
-        public KdbLongVector(long[] value)
+        public KdbLongVector(long[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

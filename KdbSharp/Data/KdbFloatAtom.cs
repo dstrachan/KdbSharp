@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbFloatAtom : IKdbAtom<double>
+    public class KdbFloatAtom : BaseDoubleAtom
     {
-        public KdbType Type => KdbType.FloatAtom;
+        public override KdbType Type => KdbType.FloatAtom;
 
-        public double Value { get; }
-
-        public KdbFloatAtom(double value)
+        public KdbFloatAtom(double value) : base(value)
         {
-            Value = value;
         }
     }
 }

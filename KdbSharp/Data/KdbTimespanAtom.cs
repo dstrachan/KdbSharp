@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbTimespanAtom : IKdbAtom<long>
+    public class KdbTimespanAtom : BaseLongAtom
     {
-        public KdbType Type => KdbType.TimespanAtom;
+        public override KdbType Type => KdbType.TimespanAtom;
 
-        public long Value { get; }
-
-        public KdbTimespanAtom(long value)
+        public KdbTimespanAtom(long value) : base(value)
         {
-            Value = value;
         }
     }
 }

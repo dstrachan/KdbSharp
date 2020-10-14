@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbDatetimeVector : IKdbVector<double>
+    public class KdbDatetimeVector : BaseDoubleVector
     {
-        public KdbType Type => KdbType.DatetimeVector;
+        public override KdbType Type => KdbType.DatetimeVector;
 
-        public double[] Value { get; }
-
-        public KdbDatetimeVector(double[] value)
+        public KdbDatetimeVector(double[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

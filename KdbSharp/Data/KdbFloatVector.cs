@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbFloatVector : IKdbVector<double>
+    public class KdbFloatVector : BaseDoubleVector
     {
-        public KdbType Type => KdbType.FloatVector;
+        public override KdbType Type => KdbType.FloatVector;
 
-        public double[] Value { get; }
-
-        public KdbFloatVector(double[] value)
+        public KdbFloatVector(double[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

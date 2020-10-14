@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbMinuteVector : IKdbVector<int>
+    public class KdbMinuteVector : BaseIntVector
     {
-        public KdbType Type => KdbType.MinuteVector;
+        public override KdbType Type => KdbType.MinuteVector;
 
-        public int[] Value { get; }
-
-        public KdbMinuteVector(int[] value)
+        public KdbMinuteVector(int[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

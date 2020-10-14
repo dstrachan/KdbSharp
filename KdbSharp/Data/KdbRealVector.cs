@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbRealVector : IKdbVector<float>
+    public class KdbRealVector : BaseFloatVector
     {
-        public KdbType Type => KdbType.RealVector;
+        public override KdbType Type => KdbType.RealVector;
 
-        public float[] Value { get; }
-
-        public KdbRealVector(float[] value)
+        public KdbRealVector(float[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

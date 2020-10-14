@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbByteVector : IKdbVector<byte>
+    public class KdbByteVector : BaseByteVector
     {
-        public KdbType Type => KdbType.ByteVector;
+        public override KdbType Type => KdbType.ByteVector;
 
-        public byte[] Value { get; }
-
-        public KdbByteVector(byte[] value)
+        public KdbByteVector(byte[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

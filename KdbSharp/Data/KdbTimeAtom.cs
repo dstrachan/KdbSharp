@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbTimeAtom : IKdbAtom<int>
+    public class KdbTimeAtom : BaseIntAtom
     {
-        public KdbType Type => KdbType.TimeAtom;
+        public override KdbType Type => KdbType.TimeAtom;
 
-        public int Value { get; }
-
-        public KdbTimeAtom(int value)
+        public KdbTimeAtom(int value) : base(value)
         {
-            Value = value;
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbShortVector : IKdbVector<short>
+    public class KdbShortVector : BaseShortVector
     {
-        public KdbType Type => KdbType.ShortVector;
+        public override KdbType Type => KdbType.ShortVector;
 
-        public short[] Value { get; }
-
-        public KdbShortVector(short[] value)
+        public KdbShortVector(short[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

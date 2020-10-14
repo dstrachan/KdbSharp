@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbSymbolVector : IKdbVector<string>
+    public class KdbSymbolVector : BaseStringVector
     {
-        public KdbType Type => KdbType.SymbolVector;
+        public override KdbType Type => KdbType.SymbolVector;
 
-        public string[] Value { get; }
-
-        public KdbSymbolVector(string[] value)
+        public KdbSymbolVector(string[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

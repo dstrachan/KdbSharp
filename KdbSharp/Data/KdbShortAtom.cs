@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbShortAtom : IKdbAtom<short>
+    public class KdbShortAtom : BaseShortAtom
     {
-        public KdbType Type => KdbType.ShortAtom;
+        public override KdbType Type => KdbType.ShortAtom;
 
-        public short Value { get; }
-
-        public KdbShortAtom(short value)
+        public KdbShortAtom(short value) : base(value)
         {
-            Value = value;
         }
     }
 }

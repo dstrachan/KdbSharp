@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbSecondVector : IKdbVector<int>
+    public class KdbSecondVector : BaseIntVector
     {
-        public KdbType Type => KdbType.SecondVector;
+        public override KdbType Type => KdbType.SecondVector;
 
-        public int[] Value { get; }
-
-        public KdbSecondVector(int[] value)
+        public KdbSecondVector(int[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

@@ -55,4 +55,13 @@
         MapEachLeft = 111,
         Exception = -128,
     }
+
+    public enum KdbAttribute
+    {
+        None = 0,
+        Sorted = 1,
+        Unique = 2,
+        Parted = 3,
+        Grouped = 4,
+    }
 }

@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbMinuteAtom : IKdbAtom<int>
+    public class KdbMinuteAtom : BaseIntAtom
     {
-        public KdbType Type => KdbType.MinuteAtom;
+        public override KdbType Type => KdbType.MinuteAtom;
 
-        public int Value { get; }
-
-        public KdbMinuteAtom(int value)
+        public KdbMinuteAtom(int value) : base(value)
         {
-            Value = value;
         }
     }
 }

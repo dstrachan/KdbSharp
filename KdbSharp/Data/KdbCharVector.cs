@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbCharVector : IKdbVector<char>
+    public class KdbCharVector : BaseCharVector
     {
-        public KdbType Type => KdbType.CharVector;
+        public override KdbType Type => KdbType.CharVector;
 
-        public char[] Value { get; }
-
-        public KdbCharVector(char[] value)
+        public KdbCharVector(char[] value) : base(value)
         {
-            Value = value;
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿namespace KdbSharp.Data
 {
-    public class KdbTimestampVector : IKdbVector<long>
+    public class KdbTimestampVector : BaseLongVector
     {
-        public KdbType Type => KdbType.TimestampVector;
+        public override KdbType Type => KdbType.TimestampVector;
 
-        public long[] Value { get; }
-
-        public KdbTimestampVector(long[] value)
+        public KdbTimestampVector(long[] value) : base(value)
         {
-            Value = value;
         }
     }
 }
