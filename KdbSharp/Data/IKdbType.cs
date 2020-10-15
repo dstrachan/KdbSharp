@@ -5,6 +5,7 @@ namespace KdbSharp.Data
     public interface IKdbType
     {
         public KdbType Type { get; }
+        public byte[] ValueBytes { get; }
 
         public byte[] Serialize(KdbMessageType messageType);
     }

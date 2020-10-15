@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.RealVector;
 
-        public KdbRealVector(float[] value) : base(value)
+        public KdbRealVector(float[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

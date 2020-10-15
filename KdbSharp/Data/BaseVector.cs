@@ -8,17 +8,17 @@ namespace KdbSharp.Data
     public abstract class BaseVector<T> : IKdbVector<T> where T : notnull
     {
         public T[] Value { get; }
-
         public KdbAttribute Attribute { get; }
 
         public abstract KdbType Type { get; }
+        public abstract byte[] ValueBytes { get; }
 
         protected int SerializedLength => 14 + ValueBytes.Length;
-        protected abstract byte[] ValueBytes { get; }
 
-        protected BaseVector(T[] value)
+        protected BaseVector(T[] value, KdbAttribute attribute)
         {
             Value = value;
+            Attribute = attribute;
         }
 
         public virtual byte[] Serialize(KdbMessageType messageType)
@@ -41,16 +41,25 @@ namespace KdbSharp.Data
 
     public abstract class BaseByteVector : BaseVector<byte>
     {
-        protected override byte[] ValueBytes => Value;
+        public override byte[] ValueBytes => Value;
 
-        protected BaseByteVector(byte[] value) : base(value)
+        protected BaseByteVector(byte[] value, KdbAttribute attribute) : base(value, attribute)
+        {
+        }
+    }
+
+    public abstract class BaseGuidVector : BaseVector<Guid>
+    {
+        public override byte[] ValueBytes => Value.SelectMany(x => x.ToKdbGuidBytes()).ToArray();
+
+        protected BaseGuidVector(Guid[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseShortVector : BaseVector<short>
     {
-        protected override byte[] ValueBytes
+        public override byte[] ValueBytes
         {
             get
             {
@@ -60,14 +69,14 @@ namespace KdbSharp.Data
             }
         }
 
-        protected BaseShortVector(short[] value) : base(value)
+        protected BaseShortVector(short[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseIntVector : BaseVector<int>
     {
-        protected override byte[] ValueBytes
+        public override byte[] ValueBytes
         {
             get
             {
@@ -77,14 +86,14 @@ namespace KdbSharp.Data
             }
         }
 
-        protected BaseIntVector(int[] value) : base(value)
+        protected BaseIntVector(int[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseLongVector : BaseVector<long>
     {
-        protected override byte[] ValueBytes
+        public override byte[] ValueBytes
         {
             get
             {
@@ -94,14 +103,14 @@ namespace KdbSharp.Data
             }
         }
 
-        protected BaseLongVector(long[] value) : base(value)
+        protected BaseLongVector(long[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseFloatVector : BaseVector<float>
     {
-        protected override byte[] ValueBytes
+        public override byte[] ValueBytes
         {
             get
             {
@@ -111,14 +120,14 @@ namespace KdbSharp.Data
             }
         }
 
-        protected BaseFloatVector(float[] value) : base(value)
+        protected BaseFloatVector(float[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseDoubleVector : BaseVector<double>
     {
-        protected override byte[] ValueBytes
+        public override byte[] ValueBytes
         {
             get
             {
@@ -128,25 +137,25 @@ namespace KdbSharp.Data
             }
         }
 
-        protected BaseDoubleVector(double[] value) : base(value)
+        protected BaseDoubleVector(double[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseCharVector : BaseVector<char>
     {
-        protected override byte[] ValueBytes => Encoding.ASCII.GetBytes(Value);
+        public override byte[] ValueBytes => Encoding.ASCII.GetBytes(Value);
 
-        protected BaseCharVector(char[] value) : base(value)
+        protected BaseCharVector(char[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }
 
     public abstract class BaseStringVector : BaseVector<string>
     {
-        protected override byte[] ValueBytes => Value.SelectMany(x => Encoding.ASCII.GetBytes(x)).ToArray();
+        public override byte[] ValueBytes => Value.SelectMany(x => Encoding.ASCII.GetBytes(x)).ToArray();
 
-        protected BaseStringVector(string[] value) : base(value)
+        protected BaseStringVector(string[] value, KdbAttribute attribute) : base(value, attribute)
         {
         }
     }

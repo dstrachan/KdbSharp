@@ -9,9 +9,9 @@ namespace KdbSharp.Data
         public T Value { get; }
 
         public abstract KdbType Type { get; }
+        public abstract byte[] ValueBytes { get; }
 
         protected abstract int SerializedLength { get; }
-        protected abstract byte[] ValueBytes { get; }
 
         protected BaseAtom(T value)
         {
@@ -35,18 +35,28 @@ namespace KdbSharp.Data
 
     public abstract class BaseByteAtom : BaseAtom<byte>
     {
+        public override byte[] ValueBytes => new byte[] { Value };
         protected override int SerializedLength => 10;
-        protected override byte[] ValueBytes => new byte[] { Value };
 
         protected BaseByteAtom(byte value) : base(value)
         {
         }
     }
 
+    public abstract class BaseGuidAtom : BaseAtom<Guid>
+    {
+        public override byte[] ValueBytes => Value.ToKdbGuidBytes();
+        protected override int SerializedLength => 25;
+
+        protected BaseGuidAtom(Guid value) : base(value)
+        {
+        }
+    }
+
     public abstract class BaseShortAtom : BaseAtom<short>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 11;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseShortAtom(short value) : base(value)
         {
@@ -55,8 +65,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseIntAtom : BaseAtom<int>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 13;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseIntAtom(int value) : base(value)
         {
@@ -65,8 +75,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseLongAtom : BaseAtom<long>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 17;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseLongAtom(long value) : base(value)
         {
@@ -75,8 +85,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseFloatAtom : BaseAtom<float>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 13;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseFloatAtom(float value) : base(value)
         {
@@ -85,8 +95,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseDoubleAtom : BaseAtom<double>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 17;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseDoubleAtom(double value) : base(value)
         {
@@ -95,8 +105,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseCharAtom : BaseAtom<char>
     {
+        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 11;
-        protected override byte[] ValueBytes => BitConverter.GetBytes(Value);
 
         protected BaseCharAtom(char value) : base(value)
         {
@@ -105,8 +115,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseStringAtom : BaseAtom<string>
     {
+        public override byte[] ValueBytes => Encoding.ASCII.GetBytes(Value);
         protected override int SerializedLength => 9 + Encoding.ASCII.GetByteCount(Value);
-        protected override byte[] ValueBytes => Encoding.ASCII.GetBytes(Value);
 
         protected BaseStringAtom(string value) : base(value)
         {

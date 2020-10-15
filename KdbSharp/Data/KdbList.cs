@@ -1,6 +1,15 @@
-﻿namespace KdbSharp.Data
+﻿using System.Linq;
+
+namespace KdbSharp.Data
 {
-    public class KdbList
+    public class KdbList : BaseVector<IKdbType>
     {
+        public override KdbType Type => KdbType.List;
+
+        public override byte[] ValueBytes => Value.SelectMany(x => x.ValueBytes).ToArray();
+
+        public KdbList(IKdbType[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
+        {
+        }
     }
 }

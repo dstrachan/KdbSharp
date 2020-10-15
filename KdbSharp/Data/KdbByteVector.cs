@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.ByteVector;
 
-        public KdbByteVector(byte[] value) : base(value)
+        public KdbByteVector(byte[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

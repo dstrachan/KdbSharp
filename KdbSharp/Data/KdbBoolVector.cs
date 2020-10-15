@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.BoolVector;
 
-        public KdbBoolVector(byte[] value) : base(value)
+        public KdbBoolVector(byte[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

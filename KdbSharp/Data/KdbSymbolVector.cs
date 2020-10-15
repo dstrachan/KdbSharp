@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.SymbolVector;
 
-        public KdbSymbolVector(string[] value) : base(value)
+        public KdbSymbolVector(string[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

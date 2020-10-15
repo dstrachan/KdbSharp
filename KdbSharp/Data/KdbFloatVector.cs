@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.FloatVector;
 
-        public KdbFloatVector(double[] value) : base(value)
+        public KdbFloatVector(double[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

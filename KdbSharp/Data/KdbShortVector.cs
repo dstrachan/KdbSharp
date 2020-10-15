@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.ShortVector;
 
-        public KdbShortVector(short[] value) : base(value)
+        public KdbShortVector(short[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

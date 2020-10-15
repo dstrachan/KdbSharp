@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.TimespanVector;
 
-        public KdbTimespanVector(long[] value) : base(value)
+        public KdbTimespanVector(long[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

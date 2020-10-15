@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.SecondVector;
 
-        public KdbSecondVector(int[] value) : base(value)
+        public KdbSecondVector(int[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

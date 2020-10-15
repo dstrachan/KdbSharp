@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.IntVector;
 
-        public KdbIntVector(int[] value) : base(value)
+        public KdbIntVector(int[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }

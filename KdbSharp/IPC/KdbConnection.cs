@@ -73,13 +73,23 @@ namespace KdbSharp.IPC
             IsOpen = false;
         }
 
+        public IKdbType Send(IKdbType data)
+        {
+            _writer.Write(data, KdbMessageType.Sync);
+            return _reader.Read();
+        }
+
         public IKdbType Send(string input)
         {
             var message = new KdbCharVector(input.ToCharArray());
-            Console.WriteLine(message);
-
             _writer.Write(message, KdbMessageType.Sync);
             return _reader.Read();
+        }
+
+        public void SendAsync(string input)
+        {
+            var message = new KdbCharVector(input.ToCharArray());
+            _writer.Write(message, KdbMessageType.Async);
         }
 
         public void Dispose() => Close();

@@ -4,7 +4,7 @@
     {
         public override KdbType Type => KdbType.MinuteVector;
 
-        public KdbMinuteVector(int[] value) : base(value)
+        public KdbMinuteVector(int[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
     }
