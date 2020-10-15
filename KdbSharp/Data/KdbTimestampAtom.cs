@@ -13,7 +13,7 @@
             Null => "0Np",
             NegativeInfinity => "-0Wp",
             PositiveInfinity => "0Wp",
-            _ => Value.ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffffff"),
+            _ => Value.ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.ffffff000"),
         };
     }
 }

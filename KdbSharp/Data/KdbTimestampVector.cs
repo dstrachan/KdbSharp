@@ -25,7 +25,7 @@ namespace KdbSharp.Data
                     Null => "0N",
                     NegativeInfinity => "-0W",
                     PositiveInfinity => "0W",
-                    _ => Value[i].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffffff"),
+                    _ => Value[i].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffff00"),
                 });
                 stringBuilder.Append(' ');
             }
@@ -34,7 +34,7 @@ namespace KdbSharp.Data
                 Null => "0Np",
                 NegativeInfinity => "-0Wp",
                 PositiveInfinity => "0Wp",
-                _ => Value[^1].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffffff"),
+                _ => Value[^1].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffff00"),
             });
             return stringBuilder.ToString();
         }

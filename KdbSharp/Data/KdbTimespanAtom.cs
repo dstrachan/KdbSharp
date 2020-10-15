@@ -13,7 +13,7 @@
             Null => "0Nn",
             NegativeInfinity => "-0Wn",
             PositiveInfinity => "0Wn",
-            _ => Value.ToTimespan().ToString("-D'D'hh:mm:ss.fffffffff"),
+            _ => Value.ToTimespan().ToString(@$"{(Value < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0"),
         };
     }
 }

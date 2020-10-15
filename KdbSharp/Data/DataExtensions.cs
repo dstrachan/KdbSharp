@@ -12,7 +12,7 @@ namespace KdbSharp.Data
         public static DateTime ToMonth(this int months) => _epoch.AddMonths(months);
         public static DateTime ToSecond(this int seconds) => _epoch.AddSeconds(seconds);
         public static DateTime ToTime(this int milliseconds) => _epoch.AddMilliseconds(milliseconds);
-        public static DateTime ToTimespan(this long nanoseconds) => _epoch.AddTicks(nanoseconds / 100);
+        public static TimeSpan ToTimespan(this long nanoseconds) => TimeSpan.FromTicks(nanoseconds / 100);
         public static DateTime ToTimestamp(this long nanoseconds) => _epoch.AddTicks(nanoseconds / 100);
     }
 }
