@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace KdbSharp.Data
 {
@@ -11,5 +12,7 @@ namespace KdbSharp.Data
         public KdbList(IKdbType[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
+
+        public override string ToString() => throw new NotImplementedException();
     }
 }

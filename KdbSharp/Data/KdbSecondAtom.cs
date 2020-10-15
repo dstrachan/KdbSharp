@@ -7,5 +7,13 @@
         public KdbSecondAtom(int value) : base(value)
         {
         }
+
+        public override string ToString() => Value switch
+        {
+            Null => "0Nv",
+            NegativeInfinity => "-0Wv",
+            PositiveInfinity => "0Wv",
+            _ => Value.ToSecond().ToString("HH:mm:ss"),
+        };
     }
 }

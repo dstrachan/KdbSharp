@@ -13,7 +13,7 @@ namespace KdbSharp.Data
 
         protected abstract int SerializedLength { get; }
 
-        //public abstract override string ToString();
+        public abstract override string ToString();
 
         protected BaseAtom(T value)
         {

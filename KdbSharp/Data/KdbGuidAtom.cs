@@ -9,5 +9,7 @@ namespace KdbSharp.Data
         public KdbGuidAtom(Guid value) : base(value)
         {
         }
+
+        public override string ToString() => $"{Value}";
     }
 }

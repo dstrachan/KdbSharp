@@ -7,5 +7,7 @@
         public KdbBoolAtom(byte value) : base(value)
         {
         }
+
+        public override string ToString() => $"{Value}b";
     }
 }

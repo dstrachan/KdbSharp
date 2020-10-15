@@ -7,5 +7,7 @@
         public KdbSymbolAtom(string value) : base(value)
         {
         }
+
+        public override string ToString() => $"`{Value}";
     }
 }

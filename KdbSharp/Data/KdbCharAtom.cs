@@ -7,5 +7,7 @@
         public KdbCharAtom(char value) : base(value)
         {
         }
+
+        public override string ToString() => $"\"{Value}\"";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -8,6 +9,18 @@ namespace KdbSharp.Data
 
         public KdbGuidVector(Guid[] value, KdbAttribute attribute) : base(value, attribute)
         {
+        }
+
+        public override string ToString()
+        {
+            if (Value.Length == 0)
+            {
+                return "`guid$()";
+            }
+
+            var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
+            stringBuilder.AppendJoin(' ', Value);
+            return stringBuilder.ToString();
         }
     }
 }

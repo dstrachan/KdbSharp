@@ -15,7 +15,7 @@ namespace KdbSharp.Data
 
         protected int SerializedLength => 14 + ValueBytes.Length;
 
-        //public abstract override string ToString();
+        public abstract override string ToString();
 
         protected BaseVector(T[] value, KdbAttribute attribute)
         {
