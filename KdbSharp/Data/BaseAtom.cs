@@ -13,6 +13,8 @@ namespace KdbSharp.Data
 
         protected abstract int SerializedLength { get; }
 
+        //public abstract override string ToString();
+
         protected BaseAtom(T value)
         {
             Value = value;
@@ -45,6 +47,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseGuidAtom : BaseAtom<Guid>
     {
+        public static readonly Guid Null = Guid.Empty;
+
         public override byte[] ValueBytes => Value.ToKdbGuidBytes();
         protected override int SerializedLength => 25;
 
@@ -55,6 +59,10 @@ namespace KdbSharp.Data
 
     public abstract class BaseShortAtom : BaseAtom<short>
     {
+        public const short Null = short.MinValue;
+        public const short NegativeInfinity = short.MinValue + 1;
+        public const short PositiveInfinity = short.MaxValue;
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 11;
 
@@ -65,6 +73,10 @@ namespace KdbSharp.Data
 
     public abstract class BaseIntAtom : BaseAtom<int>
     {
+        public const int Null = int.MinValue;
+        public const int NegativeInfinity = int.MinValue + 1;
+        public const int PositiveInfinity = int.MaxValue;
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 13;
 
@@ -75,6 +87,10 @@ namespace KdbSharp.Data
 
     public abstract class BaseLongAtom : BaseAtom<long>
     {
+        public const long Null = long.MinValue;
+        public const long NegativeInfinity = long.MinValue + 1;
+        public const long PositiveInfinity = long.MaxValue;
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 17;
 
@@ -85,6 +101,10 @@ namespace KdbSharp.Data
 
     public abstract class BaseFloatAtom : BaseAtom<float>
     {
+        public const float Null = float.NaN;
+        public const float NegativeInfinity = float.NegativeInfinity;
+        public const float PositiveInfinity = float.PositiveInfinity;
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 13;
 
@@ -95,6 +115,10 @@ namespace KdbSharp.Data
 
     public abstract class BaseDoubleAtom : BaseAtom<double>
     {
+        public const double Null = double.NaN;
+        public const double NegativeInfinity = double.NegativeInfinity;
+        public const double PositiveInfinity = double.PositiveInfinity;
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 17;
 
@@ -105,6 +129,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseCharAtom : BaseAtom<char>
     {
+        public const char Null = ' ';
+
         public override byte[] ValueBytes => BitConverter.GetBytes(Value);
         protected override int SerializedLength => 11;
 
@@ -115,6 +141,8 @@ namespace KdbSharp.Data
 
     public abstract class BaseStringAtom : BaseAtom<string>
     {
+        public const string Null = "";
+
         public override byte[] ValueBytes => Encoding.ASCII.GetBytes(Value);
         protected override int SerializedLength => 9 + Encoding.ASCII.GetByteCount(Value);
 
