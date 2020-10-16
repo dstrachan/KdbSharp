@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbMinuteVector _instance = new KdbMinuteVector(new int[] { });
 
         [TestMethod]
-        public void KdbTypeIsMinuteVector() => Assert.AreEqual(KdbType.MinuteVector, _instance.Type);
+        public void TypeIsMinuteVector() => Assert.AreEqual(KdbType.MinuteVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsIntArray() => Assert.AreEqual(typeof(int[]), _instance.Value.GetType());

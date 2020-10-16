@@ -7,6 +7,7 @@
         public KdbRealAtom(float value) : base(value)
         {
         }
+
         public override string ToString() => Value switch
         {
             Null => "0Ne",

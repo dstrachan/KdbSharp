@@ -25,7 +25,7 @@ namespace KdbSharp.Data
             var lengthBytes = BitConverter.GetBytes(SerializedLength);
 
             var result = new byte[SerializedLength];
-            result[0] = 1;
+            result[0] = (byte)KdbEndianness.LittleEndian;
             result[1] = (byte)messageType;
             Buffer.BlockCopy(lengthBytes, 0, result, 4, 4);
             result[8] = (byte)Type;
@@ -131,8 +131,9 @@ namespace KdbSharp.Data
     {
         public const char Null = ' ';
 
-        public override byte[] ValueBytes => BitConverter.GetBytes(Value);
-        protected override int SerializedLength => 11;
+        public override byte[] ValueBytes => new[] { (byte)Value };
+
+        protected override int SerializedLength => 10;
 
         protected BaseCharAtom(char value) : base(value)
         {

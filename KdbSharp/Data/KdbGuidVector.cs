@@ -7,7 +7,7 @@ namespace KdbSharp.Data
     {
         public override KdbType Type => KdbType.GuidVector;
 
-        public KdbGuidVector(Guid[] value, KdbAttribute attribute) : base(value, attribute)
+        public KdbGuidVector(Guid[] value, KdbAttribute attribute = KdbAttribute.None) : base(value, attribute)
         {
         }
 

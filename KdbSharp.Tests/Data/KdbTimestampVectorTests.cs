@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbTimestampVector _instance = new KdbTimestampVector(new long[] { });
 
         [TestMethod]
-        public void KdbTypeIsTimestampVector() => Assert.AreEqual(KdbType.TimestampVector, _instance.Type);
+        public void TypeIsTimestampVector() => Assert.AreEqual(KdbType.TimestampVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsLongArray() => Assert.AreEqual(typeof(long[]), _instance.Value.GetType());

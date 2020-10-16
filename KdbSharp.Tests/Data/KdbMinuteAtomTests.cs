@@ -6,12 +6,24 @@ namespace KdbSharp.Tests.Data
     [TestClass]
     public class KdbMinuteAtomTests
     {
-        private readonly KdbMinuteAtom _instance = new KdbMinuteAtom(0);
+        private readonly KdbMinuteAtom _zero = new KdbMinuteAtom(0);
+        private readonly KdbMinuteAtom _null = new KdbMinuteAtom(BaseIntAtom.Null);
+        private readonly KdbMinuteAtom _negativeInfinity = new KdbMinuteAtom(BaseIntAtom.NegativeInfinity);
+        private readonly KdbMinuteAtom _positiveInfinity = new KdbMinuteAtom(BaseIntAtom.PositiveInfinity);
 
         [TestMethod]
-        public void KdbTypeIsMinuteAtom() => Assert.AreEqual(KdbType.MinuteAtom, _instance.Type);
+        public void TypeIsMinuteAtom() => Assert.AreEqual(KdbType.MinuteAtom, _zero.Type);
 
         [TestMethod]
-        public void ValueTypeIsInt() => Assert.AreEqual(typeof(int), _instance.Value.GetType());
+        public void ValueTypeIsInt() => Assert.AreEqual(typeof(int), _zero.Value.GetType());
+
+        [TestMethod]
+        public void ToStringIsCorrect()
+        {
+            Assert.AreEqual("00:00", _zero.ToString());
+            Assert.AreEqual("0Nu", _null.ToString());
+            Assert.AreEqual("-0Wu", _negativeInfinity.ToString());
+            Assert.AreEqual("0Wu", _positiveInfinity.ToString());
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace KdbSharp.Data
             var vectorLengthBytes = BitConverter.GetBytes(Value.Length);
 
             var result = new byte[SerializedLength];
-            result[0] = 1;
+            result[0] = (byte)KdbEndianness.LittleEndian;
             result[1] = (byte)messageType;
             Buffer.BlockCopy(lengthBytes, 0, result, 4, 4);
             result[8] = (byte)Type;

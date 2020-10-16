@@ -6,12 +6,24 @@ namespace KdbSharp.Tests.Data
     [TestClass]
     public class KdbDatetimeAtomTests
     {
-        private readonly KdbDatetimeAtom _instance = new KdbDatetimeAtom(0);
+        private readonly KdbDatetimeAtom _zero = new KdbDatetimeAtom(0);
+        private readonly KdbDatetimeAtom _null = new KdbDatetimeAtom(BaseDoubleAtom.Null);
+        private readonly KdbDatetimeAtom _negativeInfinity = new KdbDatetimeAtom(BaseDoubleAtom.NegativeInfinity);
+        private readonly KdbDatetimeAtom _positiveInfinity = new KdbDatetimeAtom(BaseDoubleAtom.PositiveInfinity);
 
         [TestMethod]
-        public void KdbTypeIsDatetimeAtom() => Assert.AreEqual(KdbType.DatetimeAtom, _instance.Type);
+        public void TypeIsDatetimeAtom() => Assert.AreEqual(KdbType.DatetimeAtom, _zero.Type);
 
         [TestMethod]
-        public void ValueTypeIsDouble() => Assert.AreEqual(typeof(double), _instance.Value.GetType());
+        public void ValueTypeIsDouble() => Assert.AreEqual(typeof(double), _zero.Value.GetType());
+
+        [TestMethod]
+        public void ToStringIsCorrect()
+        {
+            Assert.AreEqual("2000.01.01T00:00:00.000", _zero.ToString());
+            Assert.AreEqual("0Nz", _null.ToString());
+            Assert.AreEqual("-0Wz", _negativeInfinity.ToString());
+            Assert.AreEqual("0Wz", _positiveInfinity.ToString());
+        }
     }
 }

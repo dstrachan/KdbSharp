@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbShortVector _instance = new KdbShortVector(new short[] { });
 
         [TestMethod]
-        public void KdbTypeIsShortVector() => Assert.AreEqual(KdbType.ShortVector, _instance.Type);
+        public void TypeIsShortVector() => Assert.AreEqual(KdbType.ShortVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsShortArray() => Assert.AreEqual(typeof(short[]), _instance.Value.GetType());

@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbMonthVector _instance = new KdbMonthVector(new int[] { });
 
         [TestMethod]
-        public void KdbTypeIsMonthVector() => Assert.AreEqual(KdbType.MonthVector, _instance.Type);
+        public void TypeIsMonthVector() => Assert.AreEqual(KdbType.MonthVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsIntArray() => Assert.AreEqual(typeof(int[]), _instance.Value.GetType());

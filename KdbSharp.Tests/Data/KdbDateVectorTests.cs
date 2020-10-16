@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbDateVector _instance = new KdbDateVector(new int[] { });
 
         [TestMethod]
-        public void KdbTypeIsDateVector() => Assert.AreEqual(KdbType.DateVector, _instance.Type);
+        public void TypeIsDateVector() => Assert.AreEqual(KdbType.DateVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsIntArray() => Assert.AreEqual(typeof(int[]), _instance.Value.GetType());

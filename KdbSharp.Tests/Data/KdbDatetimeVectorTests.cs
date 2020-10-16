@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbDatetimeVector _instance = new KdbDatetimeVector(new double[] { });
 
         [TestMethod]
-        public void KdbTypeIsDatetimeVector() => Assert.AreEqual(KdbType.DatetimeVector, _instance.Type);
+        public void TypeIsDatetimeVector() => Assert.AreEqual(KdbType.DatetimeVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsDoubleArray() => Assert.AreEqual(typeof(double[]), _instance.Value.GetType());

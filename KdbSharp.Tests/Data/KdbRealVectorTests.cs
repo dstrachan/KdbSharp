@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbRealVector _instance = new KdbRealVector(new float[] { });
 
         [TestMethod]
-        public void KdbTypeIsRealVector() => Assert.AreEqual(KdbType.RealVector, _instance.Type);
+        public void TypeIsRealVector() => Assert.AreEqual(KdbType.RealVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsFloatArray() => Assert.AreEqual(typeof(float[]), _instance.Value.GetType());

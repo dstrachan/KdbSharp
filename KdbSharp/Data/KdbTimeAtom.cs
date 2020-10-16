@@ -13,7 +13,7 @@
             Null => "0Nt",
             NegativeInfinity => "-0Wt",
             PositiveInfinity => "0Wt",
-            _ => Value.ToMinute().ToString("HH:mm:ss.fff"),
+            _ => Value.ToTime().ToString("HH:mm:ss.fff"),
         };
     }
 }

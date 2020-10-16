@@ -9,7 +9,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbLongVector _instance = new KdbLongVector(new long[] { });
 
         [TestMethod]
-        public void KdbTypeIsLongVector() => Assert.AreEqual(KdbType.LongVector, _instance.Type);
+        public void TypeIsLongVector() => Assert.AreEqual(KdbType.LongVector, _instance.Type);
 
         [TestMethod]
         public void ValueTypeIsLongArray() => Assert.AreEqual(typeof(long[]), _instance.Value.GetType());

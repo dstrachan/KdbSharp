@@ -1,17 +1,45 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
     public class KdbIntAtomTests
     {
-        private readonly KdbIntAtom _instance = new KdbIntAtom(0);
+        private readonly KdbIntAtomWrapper _zero = new KdbIntAtomWrapper(0);
+        private readonly KdbIntAtomWrapper _null = new KdbIntAtomWrapper(BaseIntAtom.Null);
+        private readonly KdbIntAtomWrapper _negativeInfinity = new KdbIntAtomWrapper(BaseIntAtom.NegativeInfinity);
+        private readonly KdbIntAtomWrapper _positiveInfinity = new KdbIntAtomWrapper(BaseIntAtom.PositiveInfinity);
 
         [TestMethod]
-        public void KdbTypeIsIntAtom() => Assert.AreEqual(KdbType.IntAtom, _instance.Type);
+        public void TypeIsIntAtom() => Assert.AreEqual(KdbType.IntAtom, _zero.Type);
 
         [TestMethod]
-        public void ValueTypeIsInt() => Assert.AreEqual(typeof(int), _instance.Value.GetType());
+        public void ValueTypeIsInt() => Assert.AreEqual(typeof(int), _zero.Value.GetType());
+
+        [TestMethod]
+        public void ToStringIsCorrect()
+        {
+            Assert.AreEqual("0i", _zero.ToString());
+            Assert.AreEqual("0Ni", _null.ToString());
+            Assert.AreEqual("-0Wi", _negativeInfinity.ToString());
+            Assert.AreEqual("0Wi", _positiveInfinity.ToString());
+        }
+
+        [TestMethod]
+        public void ValueBytesAreCorrect() => CollectionAssert.AreEqual(BitConverter.GetBytes(_zero.Value), _zero.ValueBytes);
+
+        [TestMethod]
+        public void SerializedLengthIsCorrect() => Assert.AreEqual(13, _zero.SerializedLengthWrapper);
+    }
+
+    public class KdbIntAtomWrapper : KdbIntAtom
+    {
+        public int SerializedLengthWrapper => SerializedLength;
+
+        public KdbIntAtomWrapper(int value) : base(value)
+        {
+        }
     }
 }
