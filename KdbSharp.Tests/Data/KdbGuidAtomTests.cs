@@ -2,13 +2,14 @@
 using KdbSharp.IPC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static KdbSharp.Data.BaseGuidAtom;
 
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
     public class KdbGuidAtomTests
     {
-        private readonly KdbGuidAtomWrapper _null = new KdbGuidAtomWrapper(BaseGuidAtom.Null);
+        private readonly KdbGuidAtomWrapper _null = new KdbGuidAtomWrapper(Null);
         private readonly KdbGuidAtomWrapper _notNull = new KdbGuidAtomWrapper(new Guid("8c6b8b64-6815-6084-0a3e-178401251b68"));
 
         [TestMethod]

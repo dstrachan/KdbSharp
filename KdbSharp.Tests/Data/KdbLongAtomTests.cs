@@ -2,6 +2,7 @@
 using KdbSharp.IPC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static KdbSharp.Data.BaseLongAtom;
 
 namespace KdbSharp.Tests.Data
 {
@@ -9,9 +10,9 @@ namespace KdbSharp.Tests.Data
     public class KdbLongAtomTests
     {
         private readonly KdbLongAtomWrapper _zero = new KdbLongAtomWrapper(0);
-        private readonly KdbLongAtomWrapper _null = new KdbLongAtomWrapper(BaseLongAtom.Null);
-        private readonly KdbLongAtomWrapper _negativeInfinity = new KdbLongAtomWrapper(BaseLongAtom.NegativeInfinity);
-        private readonly KdbLongAtomWrapper _positiveInfinity = new KdbLongAtomWrapper(BaseLongAtom.PositiveInfinity);
+        private readonly KdbLongAtomWrapper _null = new KdbLongAtomWrapper(Null);
+        private readonly KdbLongAtomWrapper _negativeInfinity = new KdbLongAtomWrapper(NegativeInfinity);
+        private readonly KdbLongAtomWrapper _positiveInfinity = new KdbLongAtomWrapper(PositiveInfinity);
 
         [TestMethod]
         public void TypeIsLongAtom() => Assert.AreEqual(KdbType.LongAtom, _zero.Type);

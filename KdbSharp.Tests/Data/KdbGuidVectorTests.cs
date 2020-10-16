@@ -3,6 +3,7 @@ using KdbSharp.IPC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using static KdbSharp.Data.BaseGuidVector;
 
 namespace KdbSharp.Tests.Data
 {
@@ -10,8 +11,8 @@ namespace KdbSharp.Tests.Data
     public class KdbGuidVectorTests
     {
         private readonly KdbGuidVector _empty = new KdbGuidVector(Array.Empty<Guid>());
-        private readonly KdbGuidVector _single = new KdbGuidVector(new[] { BaseGuidVector.Null });
-        private readonly KdbGuidVector _many = new KdbGuidVector(new[] { BaseGuidVector.Null, BaseGuidVector.Null });
+        private readonly KdbGuidVector _single = new KdbGuidVector(new[] { Null });
+        private readonly KdbGuidVector _many = new KdbGuidVector(new[] { Null, Null });
 
         [TestMethod]
         public void TypeIsGuidVector() => Assert.AreEqual(KdbType.GuidVector, _empty.Type);

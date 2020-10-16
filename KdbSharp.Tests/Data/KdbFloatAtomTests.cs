@@ -1,6 +1,7 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static KdbSharp.Data.BaseDoubleAtom;
 
 namespace KdbSharp.Tests.Data
 {
@@ -8,9 +9,9 @@ namespace KdbSharp.Tests.Data
     public class KdbFloatAtomTests
     {
         private readonly KdbFloatAtomWrapper _zero = new KdbFloatAtomWrapper(0);
-        private readonly KdbFloatAtomWrapper _null = new KdbFloatAtomWrapper(BaseDoubleAtom.Null);
-        private readonly KdbFloatAtomWrapper _negativeInfinity = new KdbFloatAtomWrapper(BaseDoubleAtom.NegativeInfinity);
-        private readonly KdbFloatAtomWrapper _positiveInfinity = new KdbFloatAtomWrapper(BaseDoubleAtom.PositiveInfinity);
+        private readonly KdbFloatAtomWrapper _null = new KdbFloatAtomWrapper(Null);
+        private readonly KdbFloatAtomWrapper _negativeInfinity = new KdbFloatAtomWrapper(NegativeInfinity);
+        private readonly KdbFloatAtomWrapper _positiveInfinity = new KdbFloatAtomWrapper(PositiveInfinity);
 
         [TestMethod]
         public void TypeIsFloatAtom() => Assert.AreEqual(KdbType.FloatAtom, _zero.Type);

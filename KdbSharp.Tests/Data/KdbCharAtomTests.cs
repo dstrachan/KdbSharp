@@ -1,12 +1,13 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static KdbSharp.Data.BaseCharAtom;
 
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
     public class KdbCharAtomTests
     {
-        private readonly KdbCharAtomWrapper _null = new KdbCharAtomWrapper(' ');
+        private readonly KdbCharAtomWrapper _null = new KdbCharAtomWrapper(Null);
         private readonly KdbCharAtomWrapper _notNull = new KdbCharAtomWrapper('a');
 
         [TestMethod]

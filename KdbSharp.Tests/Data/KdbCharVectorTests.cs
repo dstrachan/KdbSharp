@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using static KdbSharp.Data.BaseCharVector;
 
 namespace KdbSharp.Tests.Data
 {
@@ -9,7 +10,7 @@ namespace KdbSharp.Tests.Data
     public class KdbCharVectorTests
     {
         private readonly KdbCharVector _empty = new KdbCharVector(Array.Empty<char>());
-        private readonly KdbCharVector _single = new KdbCharVector(new[] { 'a' });
+        private readonly KdbCharVector _single = new KdbCharVector(new[] { Null });
         private readonly KdbCharVector _many = new KdbCharVector(new[] { 't', 'e', 's', 't' });
 
         [TestMethod]
@@ -22,7 +23,7 @@ namespace KdbSharp.Tests.Data
         public void ToStringIsCorrect()
         {
             Assert.AreEqual("`char$()", _empty.ToString());
-            Assert.AreEqual(",\"a\"", _single.ToString());
+            Assert.AreEqual(",\" \"", _single.ToString());
             Assert.AreEqual("\"test\"", _many.ToString());
         }
 

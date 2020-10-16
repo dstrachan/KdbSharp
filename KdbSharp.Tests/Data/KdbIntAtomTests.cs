@@ -1,6 +1,7 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static KdbSharp.Data.BaseIntAtom;
 
 namespace KdbSharp.Tests.Data
 {
@@ -8,9 +9,9 @@ namespace KdbSharp.Tests.Data
     public class KdbIntAtomTests
     {
         private readonly KdbIntAtomWrapper _zero = new KdbIntAtomWrapper(0);
-        private readonly KdbIntAtomWrapper _null = new KdbIntAtomWrapper(BaseIntAtom.Null);
-        private readonly KdbIntAtomWrapper _negativeInfinity = new KdbIntAtomWrapper(BaseIntAtom.NegativeInfinity);
-        private readonly KdbIntAtomWrapper _positiveInfinity = new KdbIntAtomWrapper(BaseIntAtom.PositiveInfinity);
+        private readonly KdbIntAtomWrapper _null = new KdbIntAtomWrapper(Null);
+        private readonly KdbIntAtomWrapper _negativeInfinity = new KdbIntAtomWrapper(NegativeInfinity);
+        private readonly KdbIntAtomWrapper _positiveInfinity = new KdbIntAtomWrapper(PositiveInfinity);
 
         [TestMethod]
         public void TypeIsIntAtom() => Assert.AreEqual(KdbType.IntAtom, _zero.Type);

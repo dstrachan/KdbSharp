@@ -71,8 +71,9 @@ namespace KdbSharp.Data
         {
             get
             {
-                var result = new byte[Value.Length * sizeof(short)];
-                Buffer.BlockCopy(Value, 0, result, 0, Value.Length);
+                var length = Value.Length * sizeof(short);
+                var result = new byte[length];
+                Buffer.BlockCopy(Value, 0, result, 0, length);
                 return result;
             }
         }
@@ -92,8 +93,9 @@ namespace KdbSharp.Data
         {
             get
             {
-                var result = new byte[Value.Length * sizeof(int)];
-                Buffer.BlockCopy(Value, 0, result, 0, Value.Length);
+                var length = Value.Length * sizeof(int);
+                var result = new byte[length];
+                Buffer.BlockCopy(Value, 0, result, 0, length);
                 return result;
             }
         }
@@ -113,8 +115,9 @@ namespace KdbSharp.Data
         {
             get
             {
-                var result = new byte[Value.Length * sizeof(long)];
-                Buffer.BlockCopy(Value, 0, result, 0, Value.Length);
+                var length = Value.Length * sizeof(long);
+                var result = new byte[length];
+                Buffer.BlockCopy(Value, 0, result, 0, length);
                 return result;
             }
         }
@@ -134,8 +137,9 @@ namespace KdbSharp.Data
         {
             get
             {
-                var result = new byte[Value.Length * sizeof(float)];
-                Buffer.BlockCopy(Value, 0, result, 0, Value.Length);
+                var length = Value.Length * sizeof(float);
+                var result = new byte[length];
+                Buffer.BlockCopy(Value, 0, result, 0, length);
                 return result;
             }
         }
@@ -155,8 +159,9 @@ namespace KdbSharp.Data
         {
             get
             {
-                var result = new byte[Value.Length * sizeof(double)];
-                Buffer.BlockCopy(Value, 0, result, 0, Value.Length);
+                var length = Value.Length * sizeof(double);
+                var result = new byte[length];
+                Buffer.BlockCopy(Value, 0, result, 0, length);
                 return result;
             }
         }
