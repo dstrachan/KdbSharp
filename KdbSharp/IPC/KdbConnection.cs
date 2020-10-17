@@ -19,7 +19,6 @@ namespace KdbSharp.IPC
 
         private KdbReader _reader;
         private KdbWriter _writer;
-
         private TcpClient _client;
         private Stream _stream;
 
@@ -44,7 +43,7 @@ namespace KdbSharp.IPC
                 return;
             }
 
-            var address = Dns.GetHostEntry(Host).AddressList.Where(x => x.AddressFamily != AddressFamily.InterNetworkV6).First();
+            var address = Dns.GetHostEntry(Host).AddressList.First(x => x.AddressFamily != AddressFamily.InterNetworkV6);
             _client = new TcpClient();
             _client.Connect(address, Port);
             _stream = _client.GetStream();
@@ -79,18 +78,11 @@ namespace KdbSharp.IPC
             return _reader.Read();
         }
 
-        public IKdbType Send(string input)
-        {
-            var message = new KdbCharVector(input.ToCharArray());
-            _writer.Write(message, KdbMessageType.Sync);
-            return _reader.Read();
-        }
+        public void SendAsync(IKdbType data) => _writer.Write(data, KdbMessageType.Async);
 
-        public void SendAsync(string input)
-        {
-            var message = new KdbCharVector(input.ToCharArray());
-            _writer.Write(message, KdbMessageType.Async);
-        }
+        public IKdbType Send(string input) => Send(new KdbCharVector(input.ToCharArray()));
+
+        public void SendAsync(string input) => SendAsync(new KdbCharVector(input.ToCharArray()));
 
         public void Dispose() => Close();
     }
