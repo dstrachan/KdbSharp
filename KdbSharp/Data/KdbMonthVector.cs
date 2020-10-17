@@ -19,12 +19,19 @@ namespace KdbSharp.Data
             }
 
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            stringBuilder.AppendJoin(' ', Value.Select(x => x switch
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                Null => "0N",
-                NegativeInfinity => "-0W",
-                PositiveInfinity => "0W",
-                _ => x.ToMonth().ToString("yyyy.MM"),
+                switch (x)
+                {
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        return x.ToMonth().ToString("yyyy.MM");
+                }
             }));
             stringBuilder.Append('m');
             return stringBuilder.ToString();

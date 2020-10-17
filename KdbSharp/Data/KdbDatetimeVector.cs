@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -17,25 +18,27 @@ namespace KdbSharp.Data
                 return "`datetime$()";
             }
 
+            var requiresSuffix = true;
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            for (var i = 0; i < Value.Length - 1; i++)
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                stringBuilder.Append(Value[i] switch
+                switch (x)
                 {
-                    Null => "0N",
-                    NegativeInfinity => "-0W",
-                    PositiveInfinity => "0W",
-                    _ => Value[i].ToDatetime().ToString("yyyy.MM.ddTHH:mm:ss.fff"),
-                });
-                stringBuilder.Append(' ');
-            }
-            stringBuilder.Append(Value[^1] switch
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        requiresSuffix = false;
+                        return x.ToDatetime().ToString("yyyy.MM.ddTHH:mm:ss.fff");
+                }
+            }));
+            if (requiresSuffix)
             {
-                Null => "0Nz",
-                NegativeInfinity => "-0Wz",
-                PositiveInfinity => "0Wz",
-                _ => Value[^1].ToDatetime().ToString("yyyy.MM.ddTHH:mm:ss.fff"),
-            });
+                stringBuilder.Append('z');
+            }
             return stringBuilder.ToString();
         }
     }

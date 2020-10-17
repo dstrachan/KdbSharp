@@ -7,12 +7,19 @@
         public KdbMonthAtom(int value) : base(value)
         {
         }
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Nm",
-            NegativeInfinity => "-0Wm",
-            PositiveInfinity => "0Wm",
-            _ => Value.ToMonth().ToString("yyyy.MM'm'"),
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Nm";
+                case NegativeInfinity:
+                    return "-0Wm";
+                case PositiveInfinity:
+                    return "0Wm";
+                default:
+                    return Value.ToMonth().ToString("yyyy.MM'm'");
+            }
+        }
     }
 }

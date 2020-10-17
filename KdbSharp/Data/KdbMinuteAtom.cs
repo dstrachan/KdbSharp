@@ -8,12 +8,19 @@
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Nu",
-            NegativeInfinity => "-0Wu",
-            PositiveInfinity => "0Wu",
-            _ => Value.ToMinute().ToString("HH:mm"),
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Nu";
+                case NegativeInfinity:
+                    return "-0Wu";
+                case PositiveInfinity:
+                    return "0Wu";
+                default:
+                    return Value.ToMinute().ToString("HH:mm");
+            }
+        }
     }
 }

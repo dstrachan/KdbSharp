@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -17,25 +18,27 @@ namespace KdbSharp.Data
                 return "`timestamp$()";
             }
 
+            var requiresSuffix = true;
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            for (var i = 0; i < Value.Length - 1; i++)
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                stringBuilder.Append(Value[i] switch
+                switch (x)
                 {
-                    Null => "0N",
-                    NegativeInfinity => "-0W",
-                    PositiveInfinity => "0W",
-                    _ => Value[i].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffff00"),
-                });
-                stringBuilder.Append(' ');
-            }
-            stringBuilder.Append(Value[^1] switch
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        requiresSuffix = false;
+                        return x.ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffff00");
+                }
+            }));
+            if (requiresSuffix)
             {
-                Null => "0Np",
-                NegativeInfinity => "-0Wp",
-                PositiveInfinity => "0Wp",
-                _ => Value[^1].ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.fffffff00"),
-            });
+                stringBuilder.Append('p');
+            }
             return stringBuilder.ToString();
         }
     }

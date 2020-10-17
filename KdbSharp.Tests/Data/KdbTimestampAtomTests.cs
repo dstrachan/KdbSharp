@@ -1,5 +1,6 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static KdbSharp.Data.BaseLongAtom;
 
 namespace KdbSharp.Tests.Data
 {
@@ -7,9 +8,9 @@ namespace KdbSharp.Tests.Data
     public class KdbTimestampAtomTests
     {
         private readonly KdbTimestampAtom _zero = new KdbTimestampAtom(0);
-        private readonly KdbTimestampAtom _null = new KdbTimestampAtom(BaseLongAtom.Null);
-        private readonly KdbTimestampAtom _negativeInfinity = new KdbTimestampAtom(BaseLongAtom.NegativeInfinity);
-        private readonly KdbTimestampAtom _positiveInfinity = new KdbTimestampAtom(BaseLongAtom.PositiveInfinity);
+        private readonly KdbTimestampAtom _null = new KdbTimestampAtom(Null);
+        private readonly KdbTimestampAtom _negativeInfinity = new KdbTimestampAtom(NegativeInfinity);
+        private readonly KdbTimestampAtom _positiveInfinity = new KdbTimestampAtom(PositiveInfinity);
 
         [TestMethod]
         public void TypeIsTimestampAtom() => Assert.AreEqual(KdbType.TimestampAtom, _zero.Type);

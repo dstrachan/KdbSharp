@@ -8,12 +8,19 @@
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Nn",
-            NegativeInfinity => "-0Wn",
-            PositiveInfinity => "0Wn",
-            _ => Value.ToTimespan().ToString(@$"{(Value < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0"),
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Nn";
+                case NegativeInfinity:
+                    return "-0Wn";
+                case PositiveInfinity:
+                    return "0Wn";
+                default:
+                    return Value.ToTimespan().ToString(@$"{(Value < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0");
+            }
+        }
     }
 }

@@ -8,12 +8,19 @@
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Ne",
-            NegativeInfinity => "-0We",
-            PositiveInfinity => "0We",
-            _ => $"{Value}e",
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Ne";
+                case NegativeInfinity:
+                    return "-0We";
+                case PositiveInfinity:
+                    return "0We";
+                default:
+                    return $"{Value}e";
+            }
+        }
     }
 }

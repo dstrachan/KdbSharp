@@ -8,12 +8,19 @@
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Nd",
-            NegativeInfinity => "-0Wd",
-            PositiveInfinity => "0Wd",
-            _ => Value.ToDate().ToString("yyyy.MM.dd"),
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Nd";
+                case NegativeInfinity:
+                    return "-0Wd";
+                case PositiveInfinity:
+                    return "0Wd";
+                default:
+                    return Value.ToDate().ToString("yyyy.MM.dd");
+            }
+        }
     }
 }

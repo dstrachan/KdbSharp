@@ -10,12 +10,19 @@ namespace KdbSharp.Data
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0n",
-            NegativeInfinity => "-0w",
-            PositiveInfinity => "0w",
-            _ => Math.Abs(Value - (int)Value) < double.Epsilon ? $"{Value}f" : $"{Value}",
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0n";
+                case NegativeInfinity:
+                    return "-0w";
+                case PositiveInfinity:
+                    return "0w";
+                default:
+                    return Math.Abs(Value - (int)Value) < double.Epsilon ? $"{Value}f" : $"{Value}";
+            }
+        }
     }
 }

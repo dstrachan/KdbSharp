@@ -11,6 +11,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbDateVector _empty = new KdbDateVector(Array.Empty<int>());
         private readonly KdbDateVector _single = new KdbDateVector(new[] { 0 });
         private readonly KdbDateVector _many = new KdbDateVector(new[] { 0, Null, NegativeInfinity, PositiveInfinity });
+        private readonly KdbDateVector _nulls = new KdbDateVector(new[] { Null, NegativeInfinity, PositiveInfinity });
 
         [TestMethod]
         public void TypeIsDateVector() => Assert.AreEqual(KdbType.DateVector, _empty.Type);
@@ -23,7 +24,8 @@ namespace KdbSharp.Tests.Data
         {
             Assert.AreEqual("`date$()", _empty.ToString());
             Assert.AreEqual(",2000.01.01", _single.ToString());
-            Assert.AreEqual("2000.01.01 0N -0W 0Wd", _many.ToString()); // TODO: conditional suffix
+            Assert.AreEqual("2000.01.01 0N -0W 0W", _many.ToString());
+            Assert.AreEqual("0N -0W 0Wd", _nulls.ToString());
         }
     }
 }

@@ -8,12 +8,19 @@
         {
         }
 
-        public override string ToString() => Value switch
+        public override string ToString()
         {
-            Null => "0Np",
-            NegativeInfinity => "-0Wp",
-            PositiveInfinity => "0Wp",
-            _ => Value.ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.ffffff000"),
-        };
+            switch (Value)
+            {
+                case Null:
+                    return "0Np";
+                case NegativeInfinity:
+                    return "-0Wp";
+                case PositiveInfinity:
+                    return "0Wp";
+                default:
+                    return Value.ToTimestamp().ToString("yyyy.MM.dd'D'HH:mm:ss.ffffff000");
+            }
+        }
     }
 }

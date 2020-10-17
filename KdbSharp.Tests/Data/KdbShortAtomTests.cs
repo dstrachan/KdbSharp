@@ -1,6 +1,7 @@
 ﻿using KdbSharp.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static KdbSharp.Data.BaseShortAtom;
 
 namespace KdbSharp.Tests.Data
 {
@@ -8,9 +9,9 @@ namespace KdbSharp.Tests.Data
     public class KdbShortAtomTests
     {
         private readonly KdbShortAtomWrapper _zero = new KdbShortAtomWrapper(0);
-        private readonly KdbShortAtomWrapper _null = new KdbShortAtomWrapper(BaseShortAtom.Null);
-        private readonly KdbShortAtomWrapper _negativeInfinity = new KdbShortAtomWrapper(BaseShortAtom.NegativeInfinity);
-        private readonly KdbShortAtomWrapper _positiveInfinity = new KdbShortAtomWrapper(BaseShortAtom.PositiveInfinity);
+        private readonly KdbShortAtomWrapper _null = new KdbShortAtomWrapper(Null);
+        private readonly KdbShortAtomWrapper _negativeInfinity = new KdbShortAtomWrapper(NegativeInfinity);
+        private readonly KdbShortAtomWrapper _positiveInfinity = new KdbShortAtomWrapper(PositiveInfinity);
 
         [TestMethod]
         public void TypeIsShortAtom() => Assert.AreEqual(KdbType.ShortAtom, _zero.Type);

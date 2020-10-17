@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace KdbSharp.Data
@@ -18,53 +19,27 @@ namespace KdbSharp.Data
                 return "`float$()";
             }
 
-            var requireSuffix = true;
+            var requiresSuffix = true;
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            for (var i = 0; i < Value.Length - 1; i++)
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                if (Value[i] == Null)
+                switch (x)
                 {
-                    requireSuffix = false;
-                    stringBuilder.Append("0n");
+                    case Null:
+                        requiresSuffix = false;
+                        return "0n";
+                    case NegativeInfinity:
+                        requiresSuffix = false;
+                        return "-0w";
+                    case PositiveInfinity:
+                        requiresSuffix = false;
+                        return "0w";
+                    default:
+                        requiresSuffix &= Math.Abs(x - (int)x) < double.Epsilon;
+                        return $"{x}";
                 }
-                else if (Value[i] == NegativeInfinity)
-                {
-                    requireSuffix = false;
-                    stringBuilder.Append("-0w");
-                }
-                else if (Value[i] == PositiveInfinity)
-                {
-                    requireSuffix = false;
-                    stringBuilder.Append("0w");
-                }
-                else
-                {
-                    stringBuilder.Append(Value[i]);
-                    requireSuffix &= Math.Abs(Value[i] - (int)Value[i]) < double.Epsilon;
-                }
-                stringBuilder.Append(' ');
-            }
-            if (Value[^1] == Null)
-            {
-                requireSuffix = false;
-                stringBuilder.Append("0n");
-            }
-            else if (Value[^1] == NegativeInfinity)
-            {
-                requireSuffix = false;
-                stringBuilder.Append("-0w");
-            }
-            else if (Value[^1] == PositiveInfinity)
-            {
-                requireSuffix = false;
-                stringBuilder.Append("0w");
-            }
-            else
-            {
-                stringBuilder.Append(Value[^1]);
-                requireSuffix &= Math.Abs(Value[^1] - (int)Value[^1]) < double.Epsilon;
-            }
-            if (requireSuffix)
+            }));
+            if (requiresSuffix)
             {
                 stringBuilder.Append('f');
             }

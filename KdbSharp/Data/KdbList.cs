@@ -1,5 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -13,6 +13,15 @@ namespace KdbSharp.Data
         {
         }
 
-        public override string ToString() => throw new NotImplementedException();
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "(");
+            stringBuilder.AppendJoin<IKdbType>(';', Value);
+            if (Value.Length != 1)
+            {
+                stringBuilder.Append(')');
+            }
+            return stringBuilder.ToString();
+        }
     }
 }

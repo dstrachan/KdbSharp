@@ -9,6 +9,7 @@ namespace KdbSharp.Tests.Data
     public class KdbFloatAtomTests
     {
         private readonly KdbFloatAtomWrapper _zero = new KdbFloatAtomWrapper(0);
+        private readonly KdbFloatAtomWrapper _value = new KdbFloatAtomWrapper(0.1);
         private readonly KdbFloatAtomWrapper _null = new KdbFloatAtomWrapper(Null);
         private readonly KdbFloatAtomWrapper _negativeInfinity = new KdbFloatAtomWrapper(NegativeInfinity);
         private readonly KdbFloatAtomWrapper _positiveInfinity = new KdbFloatAtomWrapper(PositiveInfinity);
@@ -23,6 +24,7 @@ namespace KdbSharp.Tests.Data
         public void ToStringIsCorrect()
         {
             Assert.AreEqual("0f", _zero.ToString());
+            Assert.AreEqual("0.1", _value.ToString());
             Assert.AreEqual("0n", _null.ToString());
             Assert.AreEqual("-0w", _negativeInfinity.ToString());
             Assert.AreEqual("0w", _positiveInfinity.ToString());

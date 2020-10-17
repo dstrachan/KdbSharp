@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using static KdbSharp.Data.BaseShortVector;
 
 namespace KdbSharp.Tests.Data
 {
@@ -10,7 +11,7 @@ namespace KdbSharp.Tests.Data
     {
         private readonly KdbShortVector _empty = new KdbShortVector(Array.Empty<short>());
         private readonly KdbShortVector _single = new KdbShortVector(new short[] { 0 });
-        private readonly KdbShortVector _many = new KdbShortVector(new short[] { 0, BaseShortVector.Null, BaseShortVector.NegativeInfinity, BaseShortVector.PositiveInfinity });
+        private readonly KdbShortVector _many = new KdbShortVector(new short[] { 0, Null, NegativeInfinity, PositiveInfinity });
 
         [TestMethod]
         public void TypeIsShortVector() => Assert.AreEqual(KdbType.ShortVector, _empty.Type);

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -17,25 +18,27 @@ namespace KdbSharp.Data
                 return "`timespan$()";
             }
 
+            var requiresSuffix = true;
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            for (var i = 0; i < Value.Length - 1; i++)
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                stringBuilder.Append(Value[i] switch
+                switch (x)
                 {
-                    Null => "0N",
-                    NegativeInfinity => "-0W",
-                    PositiveInfinity => "0W",
-                    _ => Value[i].ToTimespan().ToString(@$"{(Value[i] < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0"),
-                });
-                stringBuilder.Append(' ');
-            }
-            stringBuilder.Append(Value[^1] switch
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        requiresSuffix = false;
+                        return x.ToTimespan().ToString(@$"{(x < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0");
+                }
+            }));
+            if (requiresSuffix)
             {
-                Null => "0Nn",
-                NegativeInfinity => "-0Wn",
-                PositiveInfinity => "0Wn",
-                _ => Value[^1].ToTimespan().ToString(@$"{(Value[^1] < 0 ? @"\-" : "")}d\Dhh\:mm\:ss\.fffffff\0\0"),
-            });
+                stringBuilder.Append('n');
+            }
             return stringBuilder.ToString();
         }
     }

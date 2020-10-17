@@ -19,12 +19,19 @@ namespace KdbSharp.Data
             }
 
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            stringBuilder.AppendJoin(' ', Value.Select(x => x switch
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                Null => "0N",
-                NegativeInfinity => "-0W",
-                PositiveInfinity => "0W",
-                _ => $"{x}",
+                switch (x)
+                {
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        return $"{x}";
+                }
             }));
             stringBuilder.Append('e');
             return stringBuilder.ToString();

@@ -2,13 +2,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using static KdbSharp.Data.BaseStringAtom;
 
 namespace KdbSharp.Tests.Data
 {
     [TestClass]
     public class KdbSymbolAtomTests
     {
-        private readonly KdbSymbolAtomWrapper _null = new KdbSymbolAtomWrapper("");
+        private readonly KdbSymbolAtomWrapper _null = new KdbSymbolAtomWrapper(Null);
         private readonly KdbSymbolAtomWrapper _notNull = new KdbSymbolAtomWrapper("a");
 
         [TestMethod]

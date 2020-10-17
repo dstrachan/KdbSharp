@@ -12,6 +12,7 @@ namespace KdbSharp.Tests.Data
         private readonly KdbFloatVector _empty = new KdbFloatVector(Array.Empty<double>());
         private readonly KdbFloatVector _single = new KdbFloatVector(new double[] { 0 });
         private readonly KdbFloatVector _many = new KdbFloatVector(new[] { 0, Null, NegativeInfinity, PositiveInfinity });
+        private readonly KdbFloatVector _values = new KdbFloatVector(new[] { 0, 0.1 });
 
         [TestMethod]
         public void TypeIsFloatVector() => Assert.AreEqual(KdbType.FloatVector, _empty.Type);
@@ -24,7 +25,8 @@ namespace KdbSharp.Tests.Data
         {
             Assert.AreEqual("`float$()", _empty.ToString());
             Assert.AreEqual(",0f", _single.ToString());
-            Assert.AreEqual("0 NaN -0w 0w", _many.ToString()); // TODO: double.IsNaN()
+            Assert.AreEqual("0 0n -0w 0w", _many.ToString());
+            Assert.AreEqual("0 0.1", _values.ToString());
         }
 
         [TestMethod]

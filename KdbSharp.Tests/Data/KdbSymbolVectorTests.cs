@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using static KdbSharp.Data.BaseStringVector;
 
 namespace KdbSharp.Tests.Data
 {
@@ -10,7 +11,7 @@ namespace KdbSharp.Tests.Data
     {
         private readonly KdbSymbolVector _empty = new KdbSymbolVector(Array.Empty<string>());
         private readonly KdbSymbolVector _single = new KdbSymbolVector(new[] { "a" });
-        private readonly KdbSymbolVector _many = new KdbSymbolVector(new[] { "a", "b", "test1", "test2" });
+        private readonly KdbSymbolVector _many = new KdbSymbolVector(new[] { "a", "b", "test", Null });
 
         [TestMethod]
         public void TypeIsSymbolVector() => Assert.AreEqual(KdbType.SymbolVector, _empty.Type);
@@ -23,7 +24,7 @@ namespace KdbSharp.Tests.Data
         {
             Assert.AreEqual("`symbol$()", _empty.ToString());
             Assert.AreEqual(",`a", _single.ToString());
-            Assert.AreEqual("`a`b`test1`test2", _many.ToString());
+            Assert.AreEqual("`a`b`test`", _many.ToString());
         }
 
         [TestMethod]

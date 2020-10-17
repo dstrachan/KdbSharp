@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace KdbSharp.Data
 {
@@ -17,25 +18,27 @@ namespace KdbSharp.Data
                 return "`second$()";
             }
 
+            var requiresSuffix = true;
             var stringBuilder = new StringBuilder(Value.Length == 1 ? "," : "");
-            for (var i = 0; i < Value.Length - 1; i++)
+            stringBuilder.AppendJoin(' ', Value.Select(x =>
             {
-                stringBuilder.Append(Value[i] switch
+                switch (x)
                 {
-                    Null => "0N",
-                    NegativeInfinity => "-0W",
-                    PositiveInfinity => "0W",
-                    _ => Value[i].ToSecond().ToString("HH:mm:ss"),
-                });
-                stringBuilder.Append(' ');
-            }
-            stringBuilder.Append(Value[^1] switch
+                    case Null:
+                        return "0N";
+                    case NegativeInfinity:
+                        return "-0W";
+                    case PositiveInfinity:
+                        return "0W";
+                    default:
+                        requiresSuffix = false;
+                        return x.ToSecond().ToString("HH:mm:ss");
+                }
+            }));
+            if (requiresSuffix)
             {
-                Null => "0Nv",
-                NegativeInfinity => "-0Wv",
-                PositiveInfinity => "0Wv",
-                _ => Value[^1].ToSecond().ToString("HH:mm:ss"),
-            });
+                stringBuilder.Append('v');
+            }
             return stringBuilder.ToString();
         }
     }
